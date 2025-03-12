@@ -20,20 +20,22 @@ typedef struct {
 
 int main() {
 
+    Wave_Header header;
+
     FILE *arquivo = fopen("sound.wav", "rb");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         return 1;
     }
 
-    Wave_Header header;
-
     /* Ler o cabeçalho */
     fread(&header, sizeof(header), 1, arquivo);
 
+    printf("chunk_id: %s\n", header.chunk_id);
+    printf("Formato: %s\n", header.format);
+    printf("Tamanho da 'struct' header: %ld bytes\n", sizeof(header));
     /* Imprimir a taxa de amostragem */
     printf("Taxa de amostragem: %u Hz\n", header.sample_rate);
-
     /* Imprimir o número de canais */
     printf("Número de canais: %d %s\n",
         header.num_channels,
