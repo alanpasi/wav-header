@@ -31,12 +31,11 @@ int main() {
     /* Ler o cabeçalho */
     fread(&header, sizeof(header), 1, arquivo);
 
+    /* Imprime o cabeçalho */
     printf("chunk_id: %s\n", header.chunk_id);
     printf("Formato: %s\n", header.format);
     printf("Tamanho da 'struct' header: %ld bytes\n", sizeof(header));
-    /* Imprimir a taxa de amostragem */
     printf("Taxa de amostragem: %u Hz\n", header.sample_rate);
-    /* Imprimir o número de canais */
     printf("Número de canais: %d %s\n",
         header.num_channels,
         (header.num_channels == 1) ? "(mono)":"(stereo)"
